@@ -1,4 +1,5 @@
-git add
-git commit
-git pull
-git push
+git add: Stages changes to be commited
+git commit: Commits staged changes to be pushed
+git pull: Pulls most recent version of the repo
+git push: Pushes commits
+git status: Shows the state of the repo and its changes

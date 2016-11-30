@@ -7,10 +7,10 @@ public class Book {
         author = title = isbn = "";
     }
 
-    public Book(String author, String title, String isbn) {
-        this.author = author;
-        this.title = title;
-        this.isbn = isbn;
+    public Book(String a, String t, String i) {
+        author = a;
+        title = t;
+        isbn = i;
     }
 
     public String getAuthor() {

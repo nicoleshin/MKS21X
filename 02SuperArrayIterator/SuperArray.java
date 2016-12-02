@@ -1,5 +1,6 @@
-//import java.util.Iterator;
-public class SuperArray implements Iterable<String>{
+import java.util.Iterator;
+
+public class SuperArray {
     private String[] data;
     private int realSize;
     private int size;
@@ -142,5 +143,28 @@ public class SuperArray implements Iterable<String>{
     public void trimToSize() {
         data = toArray();
         realSize = size;
+    }
+
+    private class SuperArrayIterator implements Iterator<String> {
+        SuperArray sary;
+        int current;
+
+        public SuperArrayIterator(SuperArray s) {
+            sary = s;
+            current = 0;
+        }
+
+        public boolean hasNext() {
+            return current < sary.size();
+        }
+
+        public String next() {
+            current++;
+            return sary.get(current-1);
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
     }
 }

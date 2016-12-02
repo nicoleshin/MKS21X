@@ -1,9 +1,28 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class SuperArray {
+public class SuperArray implements Iterable<String> {
+    public static void main (String args[]) {
+        SuperArray data = new SuperArray();
+        int i = 0;
+        while(i < 26) {
+            data.add(""+(char)('A'+i));
+            i++;
+        }
+        System.out.println(data);
+        for (int n=0; n < data.size(); n++){
+            System.out.println(data.get(n)+" ");
+        }
+        System.out.println();
+        for(String s: data) {
+            System.out.println(s+" ");
+        }
+    }
+
     private String[] data;
     private int realSize;
     private int size;
+
     public SuperArray() {
         data = new String[10];
         size = 0;
@@ -145,6 +164,10 @@ public class SuperArray {
         realSize = size;
     }
 
+    public Iterator<String> iterator() {
+        return new SuperArrayIterator(this);
+    }
+
     private class SuperArrayIterator implements Iterator<String> {
         SuperArray sary;
         int current;
@@ -159,8 +182,12 @@ public class SuperArray {
         }
 
         public String next() {
-            current++;
-            return sary.get(current-1);
+            if (hasNext()) {
+                current++;
+                return sary.get(current-1);
+            } else {
+                throw new NoSuchElementException();
+            }
         }
 
         public void remove() {

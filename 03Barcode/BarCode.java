@@ -24,12 +24,16 @@ public class BarCode implements Comparable<BarCode> {
     }
 
     public int compareTo(BarCode other) {
-	return 1;
+	// CHANGE _zip to int
+	int sum = _zip + _checkDigit;
+	int otherSum = other._zip + other._checkDigit;
+	return sum - otherSum;
     }
 
     public String toString() {
 	String ret = "";
 	for (int i = 0; i < _zip.length(); i++) {
+	    // NumberFormatException
 	    ret += findCode(Integer.parseInt(_zip.substring(i,i+1)));
 	}
 	return ret;

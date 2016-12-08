@@ -1,8 +1,9 @@
-public class BarCode implements Comparable<BarCode> {
+public class Barcode implements Comparable<Barcode> {
+
     private String _zip;
     private int _checkDigit;
 
-    public BarCode(String zip) {
+    public Barcode(String zip) {
 	if (zip.length() != 5) {
 	    throw new IllegalArgumentException("Zip is not the correct length");
 	}
@@ -19,11 +20,7 @@ public class BarCode implements Comparable<BarCode> {
 	return sum % 10;
     }
 
-    public BarCode clone() {
-	return new BarCode(_zip);
-    }
-
-    public int compareTo(BarCode other) {
+    public int compareTo(Barcode other) {
 	// CHANGE _zip to int
 	int sum = _zip + _checkDigit;
 	int otherSum = other._zip + other._checkDigit;
@@ -31,12 +28,12 @@ public class BarCode implements Comparable<BarCode> {
     }
 
     public String toString() {
-	String ret = "";
+	String ret = "|";
 	for (int i = 0; i < _zip.length(); i++) {
 	    // NumberFormatException
 	    ret += findCode(Integer.parseInt(_zip.substring(i,i+1)));
 	}
-	return ret;
+	return ret + "|";
     }
 
     private String findCode(int num) {

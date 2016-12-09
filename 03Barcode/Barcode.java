@@ -15,25 +15,25 @@ public class Barcode implements Comparable<Barcode> {
 	int sum = 0;
 	for (int i = 0; i < _zip.length(); i++) {
 	    // NumberFormatException
+	    if (Character.isDigit(_zip.charAt(i))) {
+		throw new IllegalArgumentException("Zip must only contain numbers");
+	    }
 	    sum += Integer.parseInt(_zip.substring(i, i+1));
 	}
 	return sum % 10;
     }
 
     public int compareTo(Barcode other) {
-	// CHANGE _zip to int
-	int sum = _zip + _checkDigit;
-	int otherSum = other._zip + other._checkDigit;
-	return sum - otherSum;
+	return _zip.compareTo(other._zip);
     }
 
     public String toString() {
-	String ret = "|";
+	String ret = " |";
 	for (int i = 0; i < _zip.length(); i++) {
 	    // NumberFormatException
 	    ret += findCode(Integer.parseInt(_zip.substring(i,i+1)));
 	}
-	return ret + "|";
+	return _zip + ret + "|";
     }
 
     private String findCode(int num) {

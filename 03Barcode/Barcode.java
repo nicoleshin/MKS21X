@@ -2,6 +2,7 @@ public class Barcode implements Comparable<Barcode> {
 
     private String _zip;
     private int _checkDigit;
+    private static final String[] code = {"|||:::",":::||","::|:|", "::||:",":|::|",":|:|:",":||::","|:::|","|::|:","|:|::"};
 
     public Barcode(String zip) {
 	if (zip.length() != 5) {
@@ -14,7 +15,6 @@ public class Barcode implements Comparable<Barcode> {
     private int checkSum () {
 	int sum = 0;
 	for (int i = 0; i < _zip.length(); i++) {
-	    // NumberFormatException
 	    if (Character.isDigit(_zip.charAt(i))) {
 		throw new IllegalArgumentException("Zip must only contain numbers");
 	    }
@@ -30,7 +30,6 @@ public class Barcode implements Comparable<Barcode> {
     public String toString() {
 	String ret = " |";
 	for (int i = 0; i < _zip.length(); i++) {
-	    // NumberFormatException
 	    ret += findCode(Integer.parseInt(_zip.substring(i,i+1)));
 	}
 	return _zip + ret + "|";
